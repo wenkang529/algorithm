@@ -81,36 +81,16 @@ class Solution(object):
         """
         a=0
         dict={}
+        length=0
         for index,i in enumerate(s):
             if i in dict:
-                pass
-            dict[index]=i
-
-
-
-
-
-
-
-
-
-
+                if dict[i]+1>a:
+                    a = dict[i]+1
+            dict[i]=index
+            if length<index-a+1:
+                length=index-a+1
+        return length
 
 solution=Solution()
-a=ListNode(2)
-b=ListNode(9)
-c=ListNode(4)
-d=ListNode(5)
-e=ListNode(6)
-f=ListNode(7)
-
-a.next=b
-b.next=c
-
-d.next=e
-e.next=f
-
-r1=solution.addTwoNumbers(d,a)
-while r1 is not None:
-    print(r1.val)
-    r1=r1.next
+r1=solution.lengthOfLongestSubstring('abcabcdbtvtyyyyuuiutytb')
+print(r1)
