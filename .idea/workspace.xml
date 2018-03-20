@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d357687-710e-43e4-b83e-ada5b0a6f49d" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/algorithm(1).py" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/algorithm.py" afterPath="$PROJECT_DIR$/algorithm.py" />
       <change beforePath="$PROJECT_DIR$/test.py" afterPath="$PROJECT_DIR$/test.py" />
@@ -15,22 +16,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="algorithm.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/algorithm.py">
+      <file leaf-file-name="algorithm(1).py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/algorithm(1).py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="632">
-              <caret line="254" column="0" lean-forward="true" selection-start-line="254" selection-start-column="0" selection-end-line="254" selection-end-column="0" />
-              <folding>
-                <element signature="e#179#476#0" expanded="false" />
-                <element signature="e#522#1883#0" expanded="false" />
-                <element signature="e#1935#2279#0" expanded="false" />
-                <element signature="e#2340#3273#0" expanded="false" />
-                <element signature="e#3318#3969#0" expanded="false" />
-                <element signature="e#4013#4783#0" expanded="false" />
-                <element signature="e#4817#5144#0" expanded="false" />
-                <element signature="e#5180#5863#0" expanded="false" />
-                <element signature="e#5903#6146#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -38,9 +29,11 @@
       <file leaf-file-name="test.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="2" column="18" lean-forward="true" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
-              <folding />
+            <state relative-caret-position="252">
+              <caret line="36" column="12" lean-forward="true" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="12" />
+              <folding>
+                <element signature="n#!!doc" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -62,12 +55,13 @@
       <list>
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/algorithm.py" />
+        <option value="$PROJECT_DIR$/algorithm(1).py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="692" />
-    <option name="y" value="98" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="499" />
+    <option name="y" value="304" />
     <option name="width" value="1240" />
     <option name="height" value="1128" />
   </component>
@@ -190,7 +184,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1176" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -198,7 +192,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.8836538" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2951923" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15480769" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -243,7 +237,7 @@
           <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="15" />
+      <option name="time" value="16" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -253,93 +247,16 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#179#476#0" expanded="false" />
-            <element signature="e#522#1883#0" expanded="false" />
-            <element signature="e#1935#2279#0" expanded="false" />
-            <element signature="e#2340#3273#0" expanded="false" />
-            <element signature="e#3318#3969#0" expanded="false" />
-            <element signature="e#4013#4783#0" expanded="false" />
-            <element signature="e#4817#5144#0" expanded="false" />
-            <element signature="e#5180#5863#0" expanded="false" />
-            <element signature="e#5903#6146#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/algorithm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#179#476#0" expanded="false" />
-            <element signature="e#522#1883#0" expanded="false" />
-            <element signature="e#1935#2279#0" expanded="false" />
-            <element signature="e#2340#3273#0" expanded="false" />
-            <element signature="e#3318#3969#0" expanded="false" />
-            <element signature="e#4013#4783#0" expanded="false" />
-            <element signature="e#4817#5144#0" expanded="false" />
-            <element signature="e#5180#5863#0" expanded="false" />
-            <element signature="e#5903#6146#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="5" column="7" lean-forward="false" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/algorithm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#179#476#0" expanded="false" />
-            <element signature="e#522#1883#0" expanded="false" />
-            <element signature="e#1935#2279#0" expanded="false" />
-            <element signature="e#2340#3273#0" expanded="false" />
-            <element signature="e#3318#3969#0" expanded="false" />
-            <element signature="e#4013#4783#0" expanded="false" />
-            <element signature="e#4817#5144#0" expanded="false" />
-            <element signature="e#5180#5863#0" expanded="false" />
-            <element signature="e#5903#6146#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="5" column="7" lean-forward="false" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/algorithm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#179#476#0" expanded="false" />
-            <element signature="e#522#1883#0" expanded="false" />
-            <element signature="e#1935#2279#0" expanded="false" />
-            <element signature="e#2340#3273#0" expanded="false" />
-            <element signature="e#3318#3969#0" expanded="false" />
-            <element signature="e#4013#4783#0" expanded="false" />
-            <element signature="e#4817#5144#0" expanded="false" />
-            <element signature="e#5180#5863#0" expanded="false" />
-            <element signature="e#5903#6146#0" expanded="false" />
+            <element signature="e#168#465#0" expanded="false" />
+            <element signature="e#511#1872#0" expanded="false" />
+            <element signature="e#1924#2268#0" expanded="false" />
+            <element signature="e#2329#3262#0" expanded="false" />
+            <element signature="e#3307#3958#0" expanded="false" />
+            <element signature="e#4002#4772#0" expanded="false" />
+            <element signature="e#4806#5133#0" expanded="false" />
+            <element signature="e#5169#5852#0" expanded="false" />
+            <element signature="e#5892#6135#0" expanded="false" />
+            <element signature="e#6173#8289#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -348,25 +265,152 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="2" column="18" lean-forward="true" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
-          <folding />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/algorithm.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="632">
-          <caret line="254" column="0" lean-forward="true" selection-start-line="254" selection-start-column="0" selection-end-line="254" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#179#476#0" expanded="false" />
-            <element signature="e#522#1883#0" expanded="false" />
-            <element signature="e#1935#2279#0" expanded="false" />
-            <element signature="e#2340#3273#0" expanded="false" />
-            <element signature="e#3318#3969#0" expanded="false" />
-            <element signature="e#4013#4783#0" expanded="false" />
-            <element signature="e#4817#5144#0" expanded="false" />
-            <element signature="e#5180#5863#0" expanded="false" />
-            <element signature="e#5903#6146#0" expanded="false" />
+            <element signature="e#168#465#0" expanded="false" />
+            <element signature="e#511#1872#0" expanded="false" />
+            <element signature="e#1924#2268#0" expanded="false" />
+            <element signature="e#2329#3262#0" expanded="false" />
+            <element signature="e#3307#3958#0" expanded="false" />
+            <element signature="e#4002#4772#0" expanded="false" />
+            <element signature="e#4806#5133#0" expanded="false" />
+            <element signature="e#5169#5852#0" expanded="false" />
+            <element signature="e#5892#6135#0" expanded="false" />
+            <element signature="e#6173#8289#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/algorithm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#168#465#0" expanded="false" />
+            <element signature="e#511#1872#0" expanded="false" />
+            <element signature="e#1924#2268#0" expanded="false" />
+            <element signature="e#2329#3262#0" expanded="false" />
+            <element signature="e#3307#3958#0" expanded="false" />
+            <element signature="e#4002#4772#0" expanded="false" />
+            <element signature="e#4806#5133#0" expanded="false" />
+            <element signature="e#5169#5852#0" expanded="false" />
+            <element signature="e#5892#6135#0" expanded="false" />
+            <element signature="e#6173#8289#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="5" column="7" lean-forward="false" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="7" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/algorithm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#168#465#0" expanded="false" />
+            <element signature="e#511#1872#0" expanded="false" />
+            <element signature="e#1924#2268#0" expanded="false" />
+            <element signature="e#2329#3262#0" expanded="false" />
+            <element signature="e#3307#3958#0" expanded="false" />
+            <element signature="e#4002#4772#0" expanded="false" />
+            <element signature="e#4806#5133#0" expanded="false" />
+            <element signature="e#5169#5852#0" expanded="false" />
+            <element signature="e#5892#6135#0" expanded="false" />
+            <element signature="e#6173#8289#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="5" column="7" lean-forward="false" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="7" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/algorithm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#168#465#0" expanded="false" />
+            <element signature="e#511#1872#0" expanded="false" />
+            <element signature="e#1924#2268#0" expanded="false" />
+            <element signature="e#2329#3262#0" expanded="false" />
+            <element signature="e#3307#3958#0" expanded="false" />
+            <element signature="e#4002#4772#0" expanded="false" />
+            <element signature="e#4806#5133#0" expanded="false" />
+            <element signature="e#5169#5852#0" expanded="false" />
+            <element signature="e#5892#6135#0" expanded="false" />
+            <element signature="e#6173#8289#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/algorithm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="252" column="0" lean-forward="false" selection-start-line="252" selection-start-column="0" selection-end-line="293" selection-end-column="28" />
+          <folding>
+            <element signature="e#168#465#0" expanded="false" />
+            <element signature="e#511#1872#0" expanded="false" />
+            <element signature="e#1924#2268#0" expanded="false" />
+            <element signature="e#2329#3262#0" expanded="false" />
+            <element signature="e#3307#3958#0" expanded="false" />
+            <element signature="e#4002#4772#0" expanded="false" />
+            <element signature="e#4806#5133#0" expanded="false" />
+            <element signature="e#5169#5852#0" expanded="false" />
+            <element signature="e#5892#6135#0" expanded="false" />
+            <element signature="e#6173#8289#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="36" column="12" lean-forward="true" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="12" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/algorithm(1).py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
