@@ -29,9 +29,10 @@
 # e2=time.time()
 # print('l2:',e2-s2)
 
-s='aabbcc'
-p='a.b*cc'
 
-table = [[False] * (len(s) + 1) for _ in range(len(p) + 1)]
+a=[1,0,1]
+b=[1,0,1]
+c=[1,0,1]
 
-print(table)
+print(set(c)==set(b))
+
