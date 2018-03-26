@@ -84,7 +84,57 @@ class Solution(object):
                         else:
                             r1.append(r2)
         return r1
+    def threeSumClosest(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        nums.sort()
+        r1=nums[0]+nums[1]+nums[2]
+        length=len(nums)
+        for i in range(length-2):
+            j , k=i+1,length-1
+            while j<k:
+                sum=nums[i]+nums[j]+nums[k]
+                if sum==target:
+                    return sum
+                if abs(sum-target)<abs(r1-target):
+                    r1=sum
+                if sum-target>0:
+                    k-=1
+                else:
+                    j+=1
+        return r1
+    def letterCombinations(self, digits):
+        """
+        :type digits: str
+        :rtype: List[str]
+        """
+        r1=[]
+        r2=[]
+        mapping = {'2': 'abc', '3': 'def', '4': 'ghi', '5': 'jkl',
+                   '6': 'mno', '7': 'pqrs', '8': 'tuv', '9': 'wxyz'}
+        for i in digits:
+            c=mapping[i]
+            r3=[]
+            if r2==[]:
+                for j in c:
+                    r3.append(j)
+            else:
+                for j in c:
+                    for k in r2:
+                        r3.append(k+j)
+            r2=r3
+        return r2
+
+
+
+
+
+
+
 
 solution=Solution()
-r1=solution.threeSum([5,-9,-11,9,9,-4,14,10,-11,1,-13,11,10,14,-3,-3,-4,6,-15,6,6,-13,7,-11,-15,10,-8,13,-14,-12,12,6,-6,8,0,10,-11,-8,-2,-6,8,0,12,3,-9,-6,8,3,-15,0,-6,-1,3,9,-5,-5,4,2,-15,-3,5,13,-11,7,6,-4,2,11,-5,7,12,-11,-15,1,-1,-9,10,-8,1,2,8,11,-14,-4,-3,-12,-2,8,5,-1,-9,-4,-3,-13,-12,-12,-10,-3,6,1,12,3,-3,12,11,11,10])
+r1=solution.letterCombinations('23')
 print(r1)
