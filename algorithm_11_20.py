@@ -1,3 +1,10 @@
+import time
+
+#Definition for singly-linked list.
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
 
 class Solution(object):
     def maxArea(self, height):
@@ -127,14 +134,87 @@ class Solution(object):
                         r3.append(k+j)
             r2=r3
         return r2
+    def fourSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[List[int]]
+        """
+        if len(nums)<4:
+            return []
+        r1=[]
+        nums.sort()
+        length=len(nums)
+        for i in range(length-3):
+            if i>0 and nums[i]==nums[i-1]:
+                continue
+            if nums[i]+nums[i+1]+nums[i+2]+nums[i+3]>target:
+                break
+            for j in range(i+1,length-2):
+                if j>i+1 and nums[j]==nums[j-1]:
+                    continue
+                k=j+1
+                l=length-1
+                while k<l:
+                    if nums[i]+nums[j]+nums[k]+nums[k+1]>target:
+                        break
+                    sum = nums[i] + nums[j] + nums[k] + nums[l]
+                    if sum==target:
+                        if k>j+1 and nums[k]==nums[k-1]:
+                            k+=1
+                            continue
+                        r1.append([nums[i],nums[j],nums[k],nums[l]])
+                        k+=1
+                    if sum>target:
+                        l -= 1
+                    if sum<target:
+                        k += 1
+        return r1
+    def removeNthFromEnd(self, head, n):
+        """
+        :type head: ListNode
+        :type n: int
+        :rtype: ListNode
+        """
+        i=1
+        r1=head
+        while head.next is not None:
+            if i-n==0:
+                r2=r1
+            if i-n>0:
+                r2=r2.next
+            head=head.next
+            i+=1
+        if i==n:
+            return r1.next
+        r2.next=(r2.next).next
+        return r1
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        r1=[]
+        for i in s:
+            if i in '({[':
+                r1.append(i)
+            elif i in ')}]':
+                if r1==[]:
+                    return False
+                if (r1[-1]=='(' and i==')' ) or (r1[-1]=='[' and i==']' ) or (r1[-1]=='{' and i=='}' ):
+                    r1.pop()
+                else:
+                    return False
+        return r1==[]
 
 
 
 
 
-
-
-
+t_b=time.clock()
 solution=Solution()
-r1=solution.letterCombinations('23')
+r1=solution.isValid('[()]')
+t_c=time.clock()
+
 print(r1)
+print('\n',(t_c-t_b)*10000000)  #this may be ms (same to leetcode)
