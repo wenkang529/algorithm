@@ -29,10 +29,6 @@
 # e2=time.time()
 # print('l2:',e2-s2)
 
+a=[1,2,3]
 
-a=[1,0,1]
-b=[1,0,1]
-c=[1,0,1]
-
-print(set(c)==set(b))
-
+print(isinstance(a,iter))
