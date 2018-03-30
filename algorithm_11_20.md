@@ -412,18 +412,296 @@ def letterCombinations(self, digits):
 - ​
 
 
+## 18.4sum
+
+Given an array *S* of *n* integers, are there elements *a*, *b*, *c*, and *d* in *S* such that *a* + *b* + *c* + *d* = target? Find all unique quadruplets in the array which gives the sum of target.
+
+**Note:** The solution set must not contain duplicate quadruplets.
+
+```
+For example, given array S = [1, 0, -1, 0, -2, 2], and target = 0.
+
+A solution set is:
+[
+  [-1,  0, 0, 1],
+  [-2, -1, 1, 2],
+  [-2,  0, 0, 2]
+]
+```
+
+`my solution`
+
+```python
+   def fourSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[List[int]]
+        """
+        if len(nums)<4:
+            return []
+        r1=[]
+        nums.sort()
+        length=len(nums)
+        for i in range(length-3):
+            if i>0 and nums[i]==nums[i-1]:
+                continue
+            if nums[i]+nums[i+1]+nums[i+2]+nums[i+3]>target:
+                break
+            for j in range(i+1,length-2):
+                if j>i+1 and nums[j]==nums[j-1]:
+                    continue
+                k=j+1
+                l=length-1
+                while k<l:
+                    if nums[i]+nums[j]+nums[k]+nums[k+1]>target:
+                        break
+                    sum = nums[i] + nums[j] + nums[k] + nums[l]
+                    if sum==target:
+                        if k>j+1 and nums[k]==nums[k-1]:
+                            k+=1
+                            continue
+                        r1.append([nums[i],nums[j],nums[k],nums[l]])
+                        k+=1
+                    if sum>target:
+                        l -= 1
+                    if sum<target:
+                        k += 1
+        return r1
+```
+
+`attention`
+
+- sort first
+- add when to break loop
+- it will cost much time if search in list
+
+
+
+`accept solution`
+
+```python
+    def fourSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[List[int]]
+        """
+        if not nums:
+            return list()
+        n = len(nums)
+        nums.sort()
+        ans = list()
+        
+        for a in xrange(n - 3):
+            if a > 0 and nums[a] == nums[a - 1]:
+                continue
+            if nums[a] + nums[a + 1] + nums[a + 2] + nums[a + 3] > target:
+                break
+            if nums[a] + nums[n - 1] + nums[n - 2] + nums[n - 3] < target:
+                continue
+                
+            for b in xrange(a + 1, n - 2):
+                if b > a + 1 and nums[b] == nums[b - 1]:
+                    continue
+                if nums[a] + nums[b] + nums[b + 1] + nums[b + 2] > target:
+                    break
+                if nums[a] + nums[b] + nums[n - 1] + nums[n - 2] < target:
+                    continue
+                
+                c, d = b + 1, n - 1
+                while c < d:
+                    s = nums[a] + nums[b] + nums[c] + nums[d]
+                    if s < target:
+                        c += 1
+                    elif s > target:
+                        d -= 1
+                    else:
+                        ans.append([nums[a], nums[b], nums[c], nums[d]])
+                        
+                        c += 1
+                        while c < d and nums[c] == nums[c - 1]:
+                            c += 1
+                            
+                        d -= 1
+                        while d > c and nums[d] == nums[d + 1]:
+                            d -= 1
+                
+        return ans
+```
+
+## 19.remove Nth node from end of list
+
+Given a linked list, remove the *n*th node from the end of list and return its head.
+
+For example,
+
+```
+   Given linked list: 1->2->3->4->5, and n = 2.
+
+   After removing the second node from the end, the linked list becomes 1->2->3->5.
+
+```
+
+**Note:**
+Given *n* will always be valid.
+Try to do this in one pass.
+
+`my solution`
+
+```python
+class Solution(object):
+    def removeNthFromEnd(self, head, n):
+        """
+        :type head: ListNode
+        :type n: int
+        :rtype: ListNode
+        """
+        i=1
+        r1=head
+        while head.next is not None:
+            if i-n==0:
+                r2=r1
+            if i-n>0:
+                r2=r2.next
+            head=head.next
+            i+=1
+        if i==n:
+            return r1.next
+        r2.next=(r2.next).next
+        return r1
+```
+
+`attention`
+
+- take care if length of Nodelist equal to n,so it's important to take care little input
+
+`accept solution`
+
+```python
+
+```
+
+## 20.valid parentheses
+
+Given a string containing just the characters `'('`, `')'`, `'{'`, `'}'`, `'['` and `']'`, determine if the input string is valid.
+
+The brackets must close in the correct order, `"()"` and `"()[]{}"` are all valid but `"(]"` and `"([)]"` are not.
+
+`my solution`
+
+```python
+        a=0
+        b=0
+        c=0
+
+        dic='(){}[]'
+
+        l=list(s)
+        length = len(l)
+        i=0
+        j=length-1
+        while i<j:
+            if l[i]=='(':
+                a+=1
+                while i<j:
+                    if l[j]==')':
+                        a-=1
+                        break
+                    elif l[j] in dic:
+                        return False
+                    j-=1
+                i+=1
+                j-=1
+            elif l[i]=='[':
+                b+=1
+                while i<j:
+                    if l[j]==']':
+                        b-=1
+                        break
+                    elif l[j] in dic:
+                        return False
+                    j-=1
+                i+=1
+                j-=1
+            elif l[i]=='{':
+                c+=1
+                while i<j:
+                    if l[j]=='}':
+                        c-=1
+                        break
+                    elif l[j] in dic:
+                        return False
+                    j-=1
+                i+=1
+                j-=1
+            elif l[i] in dic:
+                return False
+            else:
+                i+=1
+        if i==j:
+            if l[i] in dic:
+                return False
+        if a!=0 or b!=0 or c!=0:
+            return False
+        return True
+```
+
+```python
+  #time limit exceeded  
+  def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        r1=[]
+        for i in s:
+            if i in '({[':
+                r1.append(i)
+            elif i in ')}]':
+                while len(r1)>1 and('()'in r1 or '[]' in r1 or '{}'in r1[-2:-1]):
+                    r1.pop()
+                    r1.pop()
+                if r1==[]:
+                    return False
+                if (r1[-1]=='(' and i==')' ) or (r1[-1]=='[' and i==']' ) or (r1[-1]=='{' and i=='}' ):
+                    r1.pop()
+                else:
+                    return False
+        return r1==[]
+```
 
 
 
 
 
+`attention`
 
+- understand clearly,it said the string containing just characers`'('`, `')'`, `'{'`, `'}'`, `'['` and `']'`
+- if some code will cost much time ,don't use it,chage another way.
 
+`accept solution`
 
+```
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        r1=[]
+        for i in s:
+            if i in '({[':
+                r1.append(i)
+            elif i in ')}]':
+                if r1==[]:
+                    return False
+                if (r1[-1]=='(' and i==')' ) or (r1[-1]=='[' and i==']' ) or (r1[-1]=='{' and i=='}' ):
+                    r1.pop()
+                else:
+                    return False
+        return r1==[]
 
-
-
-
+```
 
 
 

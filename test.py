@@ -28,7 +28,3 @@
 # print(fib1(x))
 # e2=time.time()
 # print('l2:',e2-s2)
-
-a=[1,2,3]
-
-print(isinstance(a,iter))
