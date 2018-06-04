@@ -74,4 +74,144 @@ Output: 1->1->2->3->4->4
         return dummy.next
 ```
 
+##22.
+
+
+
+Given *n* pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+
+For example, given *n* = 3, a solution set is:
+
+```
+[
+  "((()))",
+  "(()())",
+  "(())()",
+  "()(())",
+  "()()()"
+]
+```
+
 ## 
+
+`my solution`
+
+
+
+`attention`
+
+
+
+`accept solution`
+
+- two method
+
+```python
+    def generateParenthesis(self, n):
+        """
+        :type n: int
+        :rtype: List[str]
+        """
+        res = []
+        # number of valid left parenthesis
+        l_valid = 1
+        # number of remaining left parenthesis
+        l = n - 1
+        # number of remaining right parenthesis
+        r = n
+        # initial parenthesis string
+        s = '('
+
+        # recursive function for generating string s
+        def generate(res, s, l_valid, l, r):
+            # base case: if no remaining left parenthesis, add all remaining right parenthesis to s
+            if l == 0:
+                s += ')' * r
+                res.append(s)
+            # if have both remaining left parenthesis and valid left parenthesis
+            # either add 1 left parenthesis to s or add 1 right parenthesis to s
+            elif l != 0 and l_valid != 0:
+                generate(res, s + '(', l_valid + 1, l - 1, r)
+                generate(res, s + ')', l_valid - 1, l, r - 1)
+            # if only have remaining left parenthesis not valid parenthesis
+            # add 1 left parenthesis to s
+            elif l != 0 and l_valid == 0:
+                generate(res, s + '(', l_valid + 1, l - 1, r)
+
+        generate(res, '(', l_valid, l, r)
+        return res
+    def generateParenthesis(self, n):
+        """
+        :type n: int
+        :rtype: List[str]
+        """
+        if n == 0:
+            return []
+        left = right = n
+        result = []
+        self.generate(left, right, result, '')
+        return result
+    def generate(self, left, right, result, string):
+        if left == 0 and right == 0:
+            result.append(string)
+            return
+        if left:
+            self.generate(left - 1, right , result, string+'(')
+        if left < right:
+            self.generate(left, right - 1, result, string+')')
+```
+
+
+
+## 23.Merge k Sorted Lists
+
+Merge *k* sorted linked lists and return it as one sorted list. Analyze and describe its complexity.
+
+**Example:**
+
+```
+Input:
+[
+  1->4->5,
+  1->3->4,
+  2->6
+]
+Output: 1->1->2->3->4->4->5->6
+```
+
+`my solution`
+
+
+
+`attention`
+
+- so easy to use python sorted
+
+`accept solution`
+
+```python
+    def mergeKLists(self, lists):
+        """
+        :type lists: List[ListNode]
+        :rtype: ListNode
+        """
+        self.nodes = []
+        head = point = ListNode(0)
+        for l in lists:
+            while l:
+                self.nodes.append(l.val)
+                l = l.next
+        for x in sorted(self.nodes):
+            point.next = ListNode(x)
+            point = point.next
+        return head.next
+```
+
+
+
+
+
+
+
+
+
