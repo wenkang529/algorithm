@@ -13,6 +13,7 @@ struct ListNode {
 
 class Solution {
 public:
+//给定一个数组，一个目标数，找出数组中两个相加为目标的数
     vector<int> twoSum(vector<int>& nums, int target) {
         unordered_map<int,int> hash;
         vector<int> result;
@@ -28,6 +29,7 @@ public:
             hash[nums[i]]=i;
         }
     }
+//两个链表相加
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
         int sum ,low,high;
         while(l1 && l2)
@@ -38,6 +40,21 @@ public:
             ListNode *newlist;
         }
     }
+//两个数组求中位数
+    vector<int> find_minddle(vector<int> a, vector<int> b ){
+        int m= a.size();
+        cout << m<<endl;
+
+
+    }
+
+
+//最大子序列
+
+
+
+
+
 };
 
 
@@ -45,10 +62,7 @@ int main()
 {
 Solution solution;
 vector<int> nums;
-nums={2,7,11,15};
-vector<int> result=solution.twoSum(nums,9);
-for(int i=0;i<result.size();i++)
-{
-    cout << result[i] << endl;
-}
+nums={2,7,11,15,12};
+vector<int> result=solution.find_minddle(nums,nums);
+// cout << result << endl;
 }
