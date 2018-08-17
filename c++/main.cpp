@@ -200,57 +200,52 @@ class Solution
     //找出两个有序数组的中位数
     //中位数有两中,当为偶数时,中位数可以是两个数的平均,也可以分为上中位数和下中位数
     //一个比较好的方法是转化为求递i个小的数
-    double find_mid_num(vector<int> arr1,vector<int> arr2){
-        int len1=arr1.size();
-        int len2=arr2.size();
+    //getkth()中的k 范围是1:n  不能是0 否则会出现找不到文件malloc.c
+    double find_mid_num(vector<int> arr1, vector<int> arr2)
+    {
+        int len1 = arr1.size();
+        int len2 = arr2.size();
         //因为要求求中位数,所以如果是奇数那么这两个是一样的
-        int left=(len1+len2+1)/2;
-        int right=(len1+len2+2)/2;
-        return (getkth(arr1,0,len1-1,arr2,0,len2-1,left)+getkth(arr1,0,len1-1,arr2,0,len2-1,right))*0.5;
-        
+        int left = (len1 + len2 + 1) / 2;
+        int right = (len1 + len2 + 2) / 2;
+        return (getkth(arr1, 0, len1 - 1, arr2, 0, len2 - 1, left) + getkth(arr1, 0, len1 - 1, arr2, 0, len2 - 1, right)) * 0.5;
     }
-    int getkth(vector<int>arr1,int start1,int end1,vector<int>arr2,int start2,int end2,int k){
-        int len1=end1-start1+1;
-        int len2=end2-start2+1;
-        if (len1<len2){
-            return getkth(arr1,0,len1-1,arr2,0,len2-1,k);
+    int getkth(vector<int> arr1, int start1, int end1, vector<int> arr2, int start2, int end2, int k)
+    {
+        int len1 = end1 - start1 + 1;
+        int len2 = end2 - start2 + 1;
+        if (len1 > len2)
+        {
+            return getkth(arr2, start2, end2, arr1, start1, end1, k);
         }
-        if (len1==0){
-            return arr2[start2+k-1];
+        if (len1 == 0)
+        {
+            return arr2[start2 + k - 1];
         }
-        if(k==1){
-            return arr1[start1]<arr2[start2]?arr1[start1]:arr2[start2];
+        if (k == 1)
+        {
+            return arr1[start1] < arr2[start2] ? arr1[start1] : arr2[start2];
         }
-        int i=start1-1+len1<k/2?len1:k/2;
-        int j=start2-1+len2<k/2?len2:k/2;
-        if(arr1[i]>arr2[j]){
-            return getkth(arr1,start1,end1,arr2,j+1,end2,k-(j-start2+1));
+        int i = start1 - 1 + (len1 < (k / 2) ? len1 : (k / 2));
+        int j = start2 - 1 + (len2 < (k / 2) ? len2 : (k / 2));
+        if (arr1[i] > arr2[j])
+        {
+            return getkth(arr1, start1, end1, arr2, j + 1, end2, k - (j - start2 + 1));
         }
-        else{
-            return getkth(arr1,i+1,end1,arr2,start2,end2,k-(i-start1+1));
+        else
+        {
+            return getkth(arr1, i + 1, end1, arr2, start2, end2, k - (i - start1 + 1));
         }
     }
-
-
-
-
-
-
 };
 
 int main()
 {
     Solution solution;
-    vector<int> nums;
-    nums = {2, 7, 11, 15,56};
-
-
-    int  result = solution.find_mid_num(nums,nums);
-    cout<<"aaaa"<<endl;
+    vector<int> nums = {1, 3, 5, 7, 9};
+    vector<int> nums1 = {2, 4, 6};
+    double result=solution.find_mid_num(nums,nums1);
+    cout<<result;
     cin.get();
-    // for (int i = 0; i < result.size(); i++)
-    // {
-    //     cout << result[i] << endl;
-    // }
     return 0;
 }

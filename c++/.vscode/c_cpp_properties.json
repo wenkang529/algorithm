@@ -4,10 +4,12 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/usr/include"
+                "/usr/include/",
+                "/usr/local/include/"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/g++", 
+            "compileCommands": "",
             "cStandard": "c11",
             "cppStandard": "c++17",
             "intelliSenseMode": "clang-x64"

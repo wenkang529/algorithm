@@ -9,12 +9,12 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/main",   //这里填写的应该是链接后的文件
+            "program": "${workspaceFolder}/dp",   //这里填写的应该是链接后的文件
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
-            "externalConsole": true,
+            "externalConsole":false,
             "MIMode": "gdb",
             "setupCommands": [
                 {
