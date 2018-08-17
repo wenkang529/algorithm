@@ -5,6 +5,26 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "(gdb)c++ Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/c++/dp",   //这里填写的应该是链接后的文件
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/c++/",
+            "environment": [],
+            "externalConsole":false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "build_make",
+        },
+        {
             "name": "Python Experimental: Current File (Integrated Terminal)",
             "type": "pythonExperimental",
             "request": "launch",
