@@ -16,7 +16,8 @@
             "type": "shell",
             "command": "make",
             "args": [
-                "./c++/Makefile"
+                "-C",
+                "~/algorithm/c++"
             ]
         }
     ]

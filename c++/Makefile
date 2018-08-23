@@ -1,4 +1,5 @@
 # src file
+#SRCS=main.cpp
 SRCS=dp.cpp
 
 # file to run
@@ -13,18 +14,21 @@ OBJS=$(SRCS:.cpp=.o)   #same to OBJS=$(patsubst%.c,%.o,$(SRCS))   ---> test.0
 CC=g++
 #CFLAGS=-Wall -std=gnu99
 
+
+
 $(TARGET):$(OBJS)
 	@echo TARGET:$@
 	@echo OBJS:$^
 	$(CC) -std=c++11 -o  $@ $^  # stp2:equal to gcc -o test test.o
-
-
 
 # % is wildcard charactre(通配符)
 $(OBJS):$(SRCS)
 	@echo TARGET:$@
 	@echo OBJS:$^
 	$(CC) -std=c++11 -g -o  $@ -c $^   # stp1: equal to gcc -o test.o -c test.c
+
+
+
 
 # dp.o:dp.cpp
 # 	@echo TARGET:$@
