@@ -1,6 +1,6 @@
 # src file
-#SRCS=main.cpp
-SRCS=dp.cpp
+SRCS=main.cpp
+# SRCS=dp.cpp
 
 # file to run
 TARGET=$(SRCS:.cpp=)

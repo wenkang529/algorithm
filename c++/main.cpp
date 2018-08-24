@@ -259,14 +259,31 @@ class Solution
         }
         return maxnum;
     }
+    //container with most water
+    //包含最多的水
+    //主要思路是从两测开始i,j 我们只需移动短的那个,因为移动长的那个只会变短 
+    //If we try to move the pointer at the longer line inwards, we won't gain any increase in area,
+    int maxarea(vector<int> arr)
+    {
+        int i=0,j=(arr.size()-1);
+        int maxa=0;
+        while(i<j){
+            maxa=maxa<(min(arr[i],arr[j])*(j-i))?(min(arr[i],arr[j])*(j-i)):maxa;
+            if(arr[i]<arr[j])
+            i++;
+            else
+            j--;
+        }
+        return maxa;
+    }
 };
 
 int main()
 {
     Solution solution;
-    vector<int> nums = {1, 3, 5, 7, 9};
-    vector<int> nums1 = {2, 4, 6};
-    double result = solution.lengthOfLongestSubstring("bbbb");
+    vector<int> num1 = {1,1};
+    vector<int> num2 = {2, 4, 6};
+    int result = solution.maxarea(num1);
     cout << result;
     cin.get();
     return 0;
