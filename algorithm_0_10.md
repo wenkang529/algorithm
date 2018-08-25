@@ -234,8 +234,49 @@ The median is (2 + 3)/2 = 2.5
 
 `accept solution`  
 [link](https://leetcode.com/problems/median-of-two-sorted-arrays/solution/)
-```py
-# 没有理解是什么意思
+```c++
+# DP算法
+   //找出两个有序数组的中位数
+    //中位数有两中,当为偶数时,中位数可以是两个数的平均,也可以分为上中位数和下中位数
+    //一个比较好的方法是转化为求递i个小的数
+    //getkth()中的k 范围是1:n  不能是0 否则会出现找不到文件malloc.c
+    double find_mid_num(vector<int> arr1, vector<int> arr2)
+    {
+        int len1 = arr1.size();
+        int len2 = arr2.size();
+        //因为要求求中位数,所以如果是奇数那么这两个是一样的
+        int left = (len1 + len2 + 1) / 2;
+        int right = (len1 + len2 + 2) / 2;
+        return (getkth(arr1, 0, len1 - 1, arr2, 0, len2 - 1, left) + getkth(arr1, 0, len1 - 1, arr2, 0, len2 - 1, right)) * 0.5;
+    }
+    int getkth(vector<int> arr1, int start1, int end1, vector<int> arr2, int start2, int end2, int k)
+    {
+        int len1 = end1 - start1 + 1;
+        int len2 = end2 - start2 + 1;
+        if (len1 > len2)
+        {
+            return getkth(arr2, start2, end2, arr1, start1, end1, k);
+        }
+        if (len1 == 0)
+        {
+            return arr2[start2 + k - 1];
+        }
+        if (k == 1)
+        {
+            return arr1[start1] < arr2[start2] ? arr1[start1] : arr2[start2];
+        }
+        //i,j 为切到i,j的位置
+        int i = start1 - 1 + (len1 < (k / 2) ? len1 : (k / 2));
+        int j = start2 - 1 + (len2 < (k / 2) ? len2 : (k / 2));
+        if (arr1[i] > arr2[j])
+        {
+            return getkth(arr1, start1, end1, arr2, j + 1, end2, k - (j - start2 + 1));
+        }
+        else
+        {
+            return getkth(arr1, i + 1, end1, arr2, start2, end2, k - (i - start1 + 1));
+        }
+    }
 
 ```
 ## 5. Longest Palindromic Substring
@@ -285,20 +326,39 @@ Output: "bb"
 
 `accept`
 ```py
-    def longestPalindrome(self, s):
-        if len(s)==0:
-        	return 0
-        maxLen=1
-        start=0
-        for i in xrange(len(s)):
-        	if i-maxLen >=1 and s[i-maxLen-1:i+1]==s[i-maxLen-1:i+1][::-1]:
-        		start=i-maxLen-1
-        		maxLen+=2
-        		continue
-        	if i-maxLen > = 0 and s[i-maxLen:i+1]==s[i-maxLen:i+1][::-1]:
-        		start=i-maxLen
-        		maxLen+=1
-        return s[start:start+maxLen]
+string longestPalindrome(string s)
+{
+    int len = s.size();
+    if (len < 2)
+        return s;
+    bool d[len][len];
+    //init
+    for(int i=0;i<len;i++){
+        d[i][i]=true;
+        if(i<len-1)
+            d[i][i+1]=s[i]==s[i+1]?true:false;
+    }
+    //dp
+    for(int i=len-3;i>=0;i--){
+        for(int j=i+2;j<len;j++){
+            d[i][j]=(s[i]==s[j]&&d[i+1][j-1]);
+        }
+    }
+    //return the longest palindrome
+    int maxnum=0;
+    int m=0,n=0;
+    for (int i=0;i<len;i++){
+        for(int j=i;j<len;j++){
+            if(d[i][j]&&j-i+1>maxnum){
+                maxnum=j-i+1;
+                m=i;
+                n=j;
+            }
+        }
+    }
+    // cout<< maxnum<<endl;
+    return s.substr(m,n-m+1);  //string.substr(begin,size)
+}
 ```
 # 6. ZigZag Conversion
 
@@ -509,29 +569,73 @@ There is a more generic way of solving this problem.
 
 ## 9 Regular Expression Matching (DP:dynamic programming)
 
-```
-Implement regular expression matching with support for '.' and '*'.
+Given an input string (`s`) and a pattern (`p`), implement regular expression matching with support for `'.'` and `'*'`.
 
+```
 '.' Matches any single character.
 '*' Matches zero or more of the preceding element.
+```
 
-The matching should cover the entire input string (not partial).
+The matching should cover the **entire** input string (not partial).
 
-The function prototype should be:
-bool isMatch(const char *s, const char *p)
+**Note:**
 
-Some examples:
-isMatch("aa","a") → false
-isMatch("aa","aa") → true
-isMatch("aaa","aa") → false
-isMatch("aa", "a*") → true
-isMatch("aa", ".*") → true
-isMatch("ab", ".*") → true
-isMatch("aab", "c*a*b") → true 
+- `s` could be empty and contains only lowercase letters `a-z`.
+- `p` could be empty and contains only lowercase letters `a-z`, and characters like `.` or `*`.
+
+**Example 1:**
+
+```
+Input:
+s = "aa"
+p = "a"
+Output: false
+Explanation: "a" does not match the entire string "aa".
+```
+
+**Example 2:**
+
+```
+Input:
+s = "aa"
+p = "a*"
+Output: true
+Explanation: '*' means zero or more of the precedeng element, 'a'. Therefore, by repeating 'a' once, it becomes "aa".
+```
+
+**Example 3:**
+
+```
+Input:
+s = "ab"
+p = ".*"
+Output: true
+Explanation: ".*" means "zero or more (*) of any character (.)".
+```
+
+**Example 4:**
+
+```
+Input:
+s = "aab"
+p = "c*a*b"
+Output: true
+Explanation: c can be repeated 0 times, a can be repeated 1 time. Therefore it matches "aab".
+```
+
+**Example 5:**
+
+```
+Input:
+s = "mississippi"
+p = "mis*is*p*."
+Output: false
 ```
 
 `my solution`
+
 ```
+
 ```
 `attention`
 

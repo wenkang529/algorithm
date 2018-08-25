@@ -226,6 +226,7 @@ class Solution
         {
             return arr1[start1] < arr2[start2] ? arr1[start1] : arr2[start2];
         }
+        //i,j 为切到i,j的位置
         int i = start1 - 1 + (len1 < (k / 2) ? len1 : (k / 2));
         int j = start2 - 1 + (len2 < (k / 2) ? len2 : (k / 2));
         if (arr1[i] > arr2[j])
@@ -237,15 +238,53 @@ class Solution
             return getkth(arr1, i + 1, end1, arr2, start2, end2, k - (i - start1 + 1));
         }
     }
+    //最长不重复子序列
+    //解题思路,简单的思路是直接遍历的时候回查是否在子序列中,这样复杂度为O(N2)
+    //其实第二遍的遍历可以用空间换时间,用O(1)的方法(数组下标,哈希查找等),这里采用了数组,用一个256长度的数组,存储对应的最后一个的位置.
+    // 这样只需遍历一遍就可以
+    int lengthOfLongestSubstring(string s)
+    {
+        vector<int> dict(256, -1);
+        int current = 0, maxnum = 0;
+        for (int i = 0; i < (s.length()); i++)
+        {
+            char c = s[i];
+            if (dict[int(c)] != -1)
+            {
+                current = current < (dict[int(c)] + 1) ? (dict[int(c)] + 1) : current;
+            }
+
+            dict[int(c)] = i;
+            maxnum = maxnum < (i - current + 1) ? (i - current + 1) : maxnum;
+        }
+        return maxnum;
+    }
+    //container with most water
+    //包含最多的水
+    //主要思路是从两测开始i,j 我们只需移动短的那个,因为移动长的那个只会变短 
+    //If we try to move the pointer at the longer line inwards, we won't gain any increase in area,
+    int maxarea(vector<int> arr)
+    {
+        int i=0,j=(arr.size()-1);
+        int maxa=0;
+        while(i<j){
+            maxa=maxa<(min(arr[i],arr[j])*(j-i))?(min(arr[i],arr[j])*(j-i)):maxa;
+            if(arr[i]<arr[j])
+            i++;
+            else
+            j--;
+        }
+        return maxa;
+    }
 };
 
 int main()
 {
     Solution solution;
-    vector<int> nums = {1, 3, 5, 7, 9};
-    vector<int> nums1 = {2, 4, 6};
-    double result=solution.find_mid_num(nums,nums1);
-    cout<<result;
+    vector<int> num1 = {1,1};
+    vector<int> num2 = {2, 4, 6};
+    int result = solution.maxarea(num1);
+    cout << result;
     cin.get();
     return 0;
 }

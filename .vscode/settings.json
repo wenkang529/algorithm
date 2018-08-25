@@ -1,4 +1,8 @@
 {
+    "files.associations": {
+        "functional": "cpp"
+    },
+    "python.pythonPath": "/usr/bin/python3"
     // "files.associations": {
     //     // "array": "cpp",
     //     // "initializer_list": "cpp",
