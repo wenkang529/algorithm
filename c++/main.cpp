@@ -2,11 +2,11 @@
 #include <iostream>
 #include <unordered_map>
 #include <stack>
-#include <cstring>
 #include <string>
-#include<map>
+#include <map>
 
 using namespace std;
+
 struct ListNode
 {
     int val;
@@ -389,35 +389,48 @@ class Solution
     //a包含b列表中的所有字符串的位置
     vector<int> findSubstring(string s, vector<string> &words)
     {
-        int len_v=words.size();
-        int len_vs=words[0].size();
-        int all_len=len_v*len_vs;
-        int lens=s.size();
 
         vector<int> r1;
-        vector<int> flag(len_vs,0);
-        vector<int> right(len_vs,1);
-        if(lens<all_len)
+        int lens = s.size();
+        int len_v = words.size();
+
+        if (len_v == 0 || lens == 0)
             return r1;
-        map<string,int> dic;
-        for(int i=0;i<len_v;i++){
-            dic[words[i]]=i;
+
+        int len_vs = words[0].size();
+        int all_len = len_v * len_vs;
+        if (lens < all_len)
+            return r1;
+
+        vector<int> flag_copy(len_v, 0);
+        vector<int> flag = flag_copy;
+
+        vector<int> right(len_v, 1);
+
+        map<string, int> dic;
+        for (int i = 0; i < len_v; i++)
+        {
+            dic[words[i]] = i;
         }
 
-        for(int i=0;i<lens-all_len+1;i+all_len){
-            flag={0};
-            for(int j=i;j<all_len;j+len_vs){
-                if(dic.find(s.substr(j,len_vs))!=dic.end){
-                    flag[(j-i)/len_vs]=1;
+        for (int i = 0; i < lens - all_len + 1; i++)
+        {
+            flag = flag_copy;
+            for (int j = i; j < i+all_len; j += len_vs)
+            {
+                if (dic.find(s.substr(j, len_vs)) != dic.end())
+                {
+                    flag[dic[s.substr(j, len_vs)]] = 1;
                 }
+                else
+                    break;
             }
-            if(flag=right){
-                
+            if (flag == right)
+            {
+                r1.push_back(i);
             }
         }
-
-
-
+        return r1;
     }
 };
 
@@ -435,17 +448,16 @@ int main()
     a->next = b;
     b->next = c;
     c->next = d;
-    // d->next = e;
-    // e->next = f;
-    vector<ListNode *> par = {a, e, g};
+    d->next = e;
+    e->next = f;
+    vector<string> pa={"bar","foo","the"};
+    vector<int> result = solution.findSubstring("barfoofoobarthefoobarman", pa);
 
-    ListNode *result = solution.reverseKGroup(a, 3);
-
-    while (result != NULL)
+    for (int i = 0; i < result.size(); i++)
     {
-        cout << result->val << endl;
-        result = result->next;
+        cout << result[i];
     }
-    cin.get();
+
+    std::cin.get();
     return 0;
 }
