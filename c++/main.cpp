@@ -2,6 +2,8 @@
 #include <iostream>
 #include <unordered_map>
 #include <stack>
+#include <string>
+#include <map>
 
 using namespace std;
 
@@ -9,21 +11,20 @@ struct ListNode
 {
     int val;
     ListNode *next;
-    ListNode(int x) : val(x), next(NULL){};
+    ListNode(int x) : val(x), next(NULL) {}
 };
-
-typedef int datatype;
-struct Treenode
-{
-    datatype value;
-    struct Treenode *left;
-    struct Treenode *right;
-    Treenode(datatype _value) : value(_value), left(NULL), right(NULL) {}
-};
-
 class Solution
 {
   public:
+    typedef int datatype;
+    struct Treenode
+    {
+        datatype value;
+        struct Treenode *left;
+        struct Treenode *right;
+        Treenode(datatype _value) : value(_value), left(NULL), right(NULL) {}
+    };
+
     //找出和为目标的两个数
     vector<int> twoSum(vector<int> &nums, int target)
     {
@@ -261,30 +262,202 @@ class Solution
     }
     //container with most water
     //包含最多的水
-    //主要思路是从两测开始i,j 我们只需移动短的那个,因为移动长的那个只会变短 
+    //主要思路是从两测开始i,j 我们只需移动短的那个,因为移动长的那个只会变短
     //If we try to move the pointer at the longer line inwards, we won't gain any increase in area,
     int maxarea(vector<int> arr)
     {
-        int i=0,j=(arr.size()-1);
-        int maxa=0;
-        while(i<j){
-            maxa=maxa<(min(arr[i],arr[j])*(j-i))?(min(arr[i],arr[j])*(j-i)):maxa;
-            if(arr[i]<arr[j])
-            i++;
+        int i = 0, j = (arr.size() - 1);
+        int maxa = 0;
+        while (i < j)
+        {
+            maxa = maxa < (min(arr[i], arr[j]) * (j - i)) ? (min(arr[i], arr[j]) * (j - i)) : maxa;
+            if (arr[i] < arr[j])
+                i++;
             else
-            j--;
+                j--;
         }
         return maxa;
+    }
+    //合并k个有序的链表
+    //重点关注链表的操作
+    ListNode *mergeKLists(vector<ListNode *> &lists)
+    {
+        int len = lists.size();
+        vector<ListNode *> j(len, NULL);
+        ListNode *result = new ListNode(0);
+        ListNode *p = result;
+        // result->next = p;
+        int index = -1;
+        while (lists != j)
+        {
+            ListNode *new_l = new ListNode(0);
+            index = -1;
+            int tem_max;
+            for (int i = 0; i < len; i++)
+            {
+                if (lists[i] == NULL)
+                    continue;
+                if (index == -1 || tem_max > lists[i]->val)
+                {
+                    index = i;
+                    tem_max = lists[index]->val;
+                }
+            }
+            new_l->val = tem_max;
+            lists[index] = lists[index]->next;
+            p->next = new_l;
+            p = p->next;
+        }
+        return result->next;
+    }
+    /*
+    每k个节点反转一次链表
+    中间遇到的问题
+    1.注意链表反转的时候那个是头节点 哪个需要与下一个连接
+    2.反转后的最后一个节点next必须置为NULL ,否则会因为其本身指向的一个节点而形成的循环.
+    3.反转链表只需要每次反转k个就可以,而不是k加一个
+    */
+    ListNode *reverseKGroup(ListNode *head, int k)
+    {
+        vector<ListNode *> s(k, NULL); //只有new出来的才需要初始化才分配空间,创建向量已经分配空间了,可以初始化为null
+        ListNode a(0);
+        ListNode *r1 = &a;
+        ListNode *r2 = r1;
+        int index;
+        if (head == NULL)
+            return head;
+        while (head != NULL)
+        {
+            //初始化向量
+            for (int i = 0; i < k; i++)
+            {
+                s[i] = NULL;
+            }
+            //把节点依次放进向量,如果还未放完遇到了空就break 返回index
+            for (int i = 0; i < k; i++)
+            {
+                if (head != NULL)
+                {
+                    s[i] = head;
+                    head = head->next;
+                }
+                else
+                {
+                    index = i - 1;
+                    break;
+                }
+            }
+            //判断并反转,注意最后按是否需要反转分别处理
+            if (s[k - 1] != NULL)
+            {
+                for (int i = 1; i < k; i++)
+                {
+                    s[i]->next = s[i - 1];
+                }
+                r1->next = s[k - 1];
+                r1 = s[0];
+            }
+            else
+            {
+                r1->next = s[0];
+                r1 = s[index];
+            }
+            //最后的一个节点 next指向空
+            r1->next = NULL;
+        }
+        return r2->next;
+    }
+    //返回needle字符串在haystack字符串中的位置
+    int strStr(string haystack, string needle)
+    {
+        if (haystack == "" && needle == "")
+            return 0;
+        int len_s = haystack.length();
+        int len_n = needle.length();
+        if (len_s < len_n)
+        {
+            return -1;
+        }
+        for (int i = 0; i < len_s - len_n; i++)
+        {
+            if (haystack.substr(i, len_n) == needle)
+                return i;
+        }
+        return -1;
+    }
+    //Substring with Concatenation of All Words
+    //a包含b列表中的所有字符串的位置
+    vector<int> findSubstring(string s, vector<string> &words)
+    {
+
+        vector<int> r1;
+        int lens = s.size();
+        int len_v = words.size();
+
+        if (len_v == 0 || lens == 0)
+            return r1;
+
+        int len_vs = words[0].size();
+        int all_len = len_v * len_vs;
+        if (lens < all_len)
+            return r1;
+
+        vector<int> flag_copy(len_v, 0);
+        vector<int> flag = flag_copy;
+
+        vector<int> right(len_v, 1);
+
+        map<string, int> dic;
+        for (int i = 0; i < len_v; i++)
+        {
+            dic[words[i]] = i;
+        }
+
+        for (int i = 0; i < lens - all_len + 1; i++)
+        {
+            flag = flag_copy;
+            for (int j = i; j < i+all_len; j += len_vs)
+            {
+                if (dic.find(s.substr(j, len_vs)) != dic.end())
+                {
+                    flag[dic[s.substr(j, len_vs)]] = 1;
+                }
+                else
+                    break;
+            }
+            if (flag == right)
+            {
+                r1.push_back(i);
+            }
+        }
+        return r1;
     }
 };
 
 int main()
 {
     Solution solution;
-    vector<int> num1 = {1,1};
-    vector<int> num2 = {2, 4, 6};
-    int result = solution.maxarea(num1);
-    cout << result;
-    cin.get();
+    vector<int> nums = {2, 4, 6};
+    ListNode *a = new ListNode(1);
+    ListNode *b = new ListNode(2);
+    ListNode *c = new ListNode(3);
+    ListNode *d = new ListNode(4);
+    ListNode *e = new ListNode(5);
+    ListNode *f = new ListNode(6);
+    ListNode *g = new ListNode(7);
+    a->next = b;
+    b->next = c;
+    c->next = d;
+    d->next = e;
+    e->next = f;
+    vector<string> pa={"bar","foo","the"};
+    vector<int> result = solution.findSubstring("barfoofoobarthefoobarman", pa);
+
+    for (int i = 0; i < result.size(); i++)
+    {
+        cout << result[i];
+    }
+
+    std::cin.get();
     return 0;
 }
