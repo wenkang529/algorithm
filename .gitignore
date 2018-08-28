@@ -1,4 +1,8 @@
 /.idea/
 /venv/
 /venv1/
+/c++/main
+/c++/*.o
+/c++/dp
+
 

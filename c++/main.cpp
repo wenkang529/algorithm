@@ -4,6 +4,7 @@
 #include <stack>
 #include <cstring>
 #include <string>
+#include<map>
 
 using namespace std;
 struct ListNode
@@ -309,15 +310,116 @@ class Solution
         }
         return result->next;
     }
-
-    int test()
+    /*
+    每k个节点反转一次链表
+    中间遇到的问题
+    1.注意链表反转的时候那个是头节点 哪个需要与下一个连接
+    2.反转后的最后一个节点next必须置为NULL ,否则会因为其本身指向的一个节点而形成的循环.
+    3.反转链表只需要每次反转k个就可以,而不是k加一个
+    */
+    ListNode *reverseKGroup(ListNode *head, int k)
     {
-        // ListNode a(0);
-        // cout<<a.val;
-        // cin.get();
+        vector<ListNode *> s(k, NULL); //只有new出来的才需要初始化才分配空间,创建向量已经分配空间了,可以初始化为null
+        ListNode a(0);
+        ListNode *r1 = &a;
+        ListNode *r2 = r1;
+        int index;
+        if (head == NULL)
+            return head;
+        while (head != NULL)
+        {
+            //初始化向量
+            for (int i = 0; i < k; i++)
+            {
+                s[i] = NULL;
+            }
+            //把节点依次放进向量,如果还未放完遇到了空就break 返回index
+            for (int i = 0; i < k; i++)
+            {
+                if (head != NULL)
+                {
+                    s[i] = head;
+                    head = head->next;
+                }
+                else
+                {
+                    index = i - 1;
+                    break;
+                }
+            }
+            //判断并反转,注意最后按是否需要反转分别处理
+            if (s[k - 1] != NULL)
+            {
+                for (int i = 1; i < k; i++)
+                {
+                    s[i]->next = s[i - 1];
+                }
+                r1->next = s[k - 1];
+                r1 = s[0];
+            }
+            else
+            {
+                r1->next = s[0];
+                r1 = s[index];
+            }
+            //最后的一个节点 next指向空
+            r1->next = NULL;
+        }
+        return r2->next;
+    }
+    //返回needle字符串在haystack字符串中的位置
+    int strStr(string haystack, string needle)
+    {
+        if (haystack == "" && needle == "")
+            return 0;
+        int len_s = haystack.length();
+        int len_n = needle.length();
+        if (len_s < len_n)
+        {
+            return -1;
+        }
+        for (int i = 0; i < len_s - len_n; i++)
+        {
+            if (haystack.substr(i, len_n) == needle)
+                return i;
+        }
+        return -1;
+    }
+    //Substring with Concatenation of All Words
+    //a包含b列表中的所有字符串的位置
+    vector<int> findSubstring(string s, vector<string> &words)
+    {
+        int len_v=words.size();
+        int len_vs=words[0].size();
+        int all_len=len_v*len_vs;
+        int lens=s.size();
+
+        vector<int> r1;
+        vector<int> flag(len_vs,0);
+        vector<int> right(len_vs,1);
+        if(lens<all_len)
+            return r1;
+        map<string,int> dic;
+        for(int i=0;i<len_v;i++){
+            dic[words[i]]=i;
+        }
+
+        for(int i=0;i<lens-all_len+1;i+all_len){
+            flag={0};
+            for(int j=i;j<all_len;j+len_vs){
+                if(dic.find(s.substr(j,len_vs))!=dic.end){
+                    flag[(j-i)/len_vs]=1;
+                }
+            }
+            if(flag=right){
+                
+            }
+        }
+
+
+
     }
 };
-
 
 int main()
 {
@@ -333,14 +435,17 @@ int main()
     a->next = b;
     b->next = c;
     c->next = d;
-    e->next = f;
+    // d->next = e;
+    // e->next = f;
     vector<ListNode *> par = {a, e, g};
-    
-    
-    ListNode *result = solution.mergeKLists(par);
 
-    
-    cout << result;
+    ListNode *result = solution.reverseKGroup(a, 3);
+
+    while (result != NULL)
+    {
+        cout << result->val << endl;
+        result = result->next;
+    }
     cin.get();
     return 0;
 }
