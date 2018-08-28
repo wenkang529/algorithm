@@ -2,28 +2,28 @@
 #include <iostream>
 #include <unordered_map>
 #include <stack>
+#include <cstring>
+#include <string>
 
 using namespace std;
-
 struct ListNode
 {
     int val;
     ListNode *next;
-    ListNode(int x) : val(x), next(NULL){};
+    ListNode(int x) : val(x), next(NULL) {}
 };
-
-typedef int datatype;
-struct Treenode
-{
-    datatype value;
-    struct Treenode *left;
-    struct Treenode *right;
-    Treenode(datatype _value) : value(_value), left(NULL), right(NULL) {}
-};
-
 class Solution
 {
   public:
+    typedef int datatype;
+    struct Treenode
+    {
+        datatype value;
+        struct Treenode *left;
+        struct Treenode *right;
+        Treenode(datatype _value) : value(_value), left(NULL), right(NULL) {}
+    };
+
     //找出和为目标的两个数
     vector<int> twoSum(vector<int> &nums, int target)
     {
@@ -261,29 +261,85 @@ class Solution
     }
     //container with most water
     //包含最多的水
-    //主要思路是从两测开始i,j 我们只需移动短的那个,因为移动长的那个只会变短 
+    //主要思路是从两测开始i,j 我们只需移动短的那个,因为移动长的那个只会变短
     //If we try to move the pointer at the longer line inwards, we won't gain any increase in area,
     int maxarea(vector<int> arr)
     {
-        int i=0,j=(arr.size()-1);
-        int maxa=0;
-        while(i<j){
-            maxa=maxa<(min(arr[i],arr[j])*(j-i))?(min(arr[i],arr[j])*(j-i)):maxa;
-            if(arr[i]<arr[j])
-            i++;
+        int i = 0, j = (arr.size() - 1);
+        int maxa = 0;
+        while (i < j)
+        {
+            maxa = maxa < (min(arr[i], arr[j]) * (j - i)) ? (min(arr[i], arr[j]) * (j - i)) : maxa;
+            if (arr[i] < arr[j])
+                i++;
             else
-            j--;
+                j--;
         }
         return maxa;
     }
+    //合并k个有序的链表
+    //重点关注链表的操作
+    ListNode *mergeKLists(vector<ListNode *> &lists)
+    {
+        int len = lists.size();
+        vector<ListNode *> j(len, NULL);
+        ListNode *result = new ListNode(0);
+        ListNode *p = result;
+        // result->next = p;
+        int index = -1;
+        while (lists != j)
+        {
+            ListNode *new_l = new ListNode(0);
+            index = -1;
+            int tem_max;
+            for (int i = 0; i < len; i++)
+            {
+                if (lists[i] == NULL)
+                    continue;
+                if (index == -1 || tem_max > lists[i]->val)
+                {
+                    index = i;
+                    tem_max = lists[index]->val;
+                }
+            }
+            new_l->val = tem_max;
+            lists[index] = lists[index]->next;
+            p->next = new_l;
+            p = p->next;
+        }
+        return result->next;
+    }
+
+    int test()
+    {
+        // ListNode a(0);
+        // cout<<a.val;
+        // cin.get();
+    }
 };
+
 
 int main()
 {
     Solution solution;
-    vector<int> num1 = {1,1};
-    vector<int> num2 = {2, 4, 6};
-    int result = solution.maxarea(num1);
+    vector<int> nums = {2, 4, 6};
+    ListNode *a = new ListNode(1);
+    ListNode *b = new ListNode(2);
+    ListNode *c = new ListNode(3);
+    ListNode *d = new ListNode(4);
+    ListNode *e = new ListNode(5);
+    ListNode *f = new ListNode(6);
+    ListNode *g = new ListNode(7);
+    a->next = b;
+    b->next = c;
+    c->next = d;
+    e->next = f;
+    vector<ListNode *> par = {a, e, g};
+    
+    
+    ListNode *result = solution.mergeKLists(par);
+
+    
     cout << result;
     cin.get();
     return 0;
