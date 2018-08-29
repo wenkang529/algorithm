@@ -75,7 +75,7 @@ int longestValidParentheses(string s)
 //paliindrome 回文
 //most important is to find the correct equation of state transition,
 //first i had missed the target,and all i did is wrong
-//key:d[i][j]
+//key:d[i][j] = True/False 
 //init: d[i][i]=true    d[i][i+1]=s[i]==s[i+1]?true:false
 //dp i(n-->0) j(i-->n)  d[i][j]=(s[i]==s[j]&&d[i+1][j-1])
 

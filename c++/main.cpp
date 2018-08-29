@@ -387,6 +387,7 @@ class Solution
     }
     //Substring with Concatenation of All Words
     //a包含b列表中的所有字符串的位置
+    //还有一个想法,用map和队列的集合,固定长度的队列,每次进一个新的元素就删除一个元素
     vector<int> findSubstring(string s, vector<string> &words)
     {
 
@@ -407,23 +408,57 @@ class Solution
 
         vector<int> right(len_v, 1);
 
-        map<string, int> dic;
+        map<string, int> count;
+        map<string, int> seen;
+
+        //记录words每个单词的个数
         for (int i = 0; i < len_v; i++)
         {
-            dic[words[i]] = i;
+            if (count.find(words[i]) != count.end())
+            {
+                count[words[i]]++;
+            }
+            else
+                count[words[i]] = 1;
         }
-
-        for (int i = 0; i < lens - all_len + 1; i++)
+        //iterate
+        for (int i = 0; i < len_vs; i++)
         {
             flag = flag_copy;
-            for (int j = i; j < i+all_len; j += len_vs)
+            for (int j = i; j < lens - all_len + 1; j += len_vs)
             {
-                if (dic.find(s.substr(j, len_vs)) != dic.end())
+                if (count.find(s.substr(j, len_vs)) == count.end())
                 {
-                    flag[dic[s.substr(j, len_vs)]] = 1;
+                    continue;
                 }
                 else
-                    break;
+                {
+                    map<string, int> tmp = count;
+                    //计算是否符合 (计算长度为all_len) 其实这样也是有重复计算的
+                    for (int m = j; m < j+all_len; m += len_vs)
+                    {
+                        if (count.find(s.substr(m, len_vs)) == count.end())
+                        {
+                            j = m ;
+                            break;   
+                        }
+                        else
+                        {
+                            tmp[s.substr(m, len_vs)] -= 1;
+                        }
+                    }
+                    int f = 1;
+                    for (map<string, int>::iterator iter = tmp.begin(); iter != tmp.end(); iter++)
+                    {
+                        if (iter->second != 0)
+                            {f = 0;
+                            break;}
+                    }
+                    if (f == 1)
+                    {
+                        r1.push_back(j);
+                    }
+                }
             }
             if (flag == right)
             {
@@ -450,12 +485,12 @@ int main()
     c->next = d;
     d->next = e;
     e->next = f;
-    vector<string> pa={"bar","foo","the"};
-    vector<int> result = solution.findSubstring("barfoofoobarthefoobarman", pa);
+    vector<string> pa = {"bar", "foo"};
+    vector<int> result = solution.findSubstring("barfoothefoobarman", pa);
 
     for (int i = 0; i < result.size(); i++)
     {
-        cout << result[i];
+        cout << result[i]<<endl;
     }
 
     std::cin.get();

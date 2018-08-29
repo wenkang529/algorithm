@@ -350,6 +350,13 @@ for (int i = 0; i < len; i++) {
 
 `my solution`
 
+
+
+`attention`
+
+- it's important to deal how to use O(n) space
+- use i,j  i is slow-runner,j is faster-runner. copy nums[j] to nums[i+1].
+
 `accept solution`
 
 ```python
@@ -372,12 +379,6 @@ for (int i = 0; i < len; i++) {
         nums=nums[0:i+1]
         return i+1
 ```
-
-`attention`
-
-- it's important to deal how to use O(n) space
-- use i,j  i is slow-runner,j is faster-runner. copy nums[j] to nums[i+1].
-
 
 
 ## 27.Remove Element
@@ -474,6 +475,54 @@ Output: -1
 What should we return when `needle` is an empty string? This is a great question to ask during an interview.
 
 For the purpose of this problem, we will return 0 when `needle` is an empty string. This is consistent to C's [strstr()](http://www.cplusplus.com/reference/cstring/strstr/) and Java's [indexOf()](https://docs.oracle.com/javase/7/docs/api/java/lang/String.html#indexOf(java.lang.String)).
+
+`my solution`
+
+```python
+    int strStr(string haystack, string needle) {
+        if (haystack == "" && needle == "")
+            return 0;
+        int len_s = haystack.length();
+        int len_n = needle.length();
+        if(len_s<len_n){
+            return -1;
+        }
+        for (int i = 0; i < len_s - len_n+1; i++)
+        {
+            if (haystack.substr(i, len_n) == needle)
+                return i;
+        }
+        return -1;
+    }
+```
+
+## 29.Divide Two Integers
+
+Given two integers `dividend` and `divisor`, divide two integers without using multiplication, division and mod operator.
+
+Return the quotient after dividing `dividend` by `divisor`.
+
+The integer division should truncate toward zero.
+
+**Example 1:**
+
+```
+Input: dividend = 10, divisor = 3
+Output: 3
+```
+
+**Example 2:**
+
+```
+Input: dividend = 7, divisor = -3
+Output: -2
+```
+
+**Note:**
+
+- Both dividend and divisor will be 32-bit signed integers.
+- The divisor will never be 0.
+- Assume we are dealing with an environment which could only store integers within the 32-bit signed integer range: [−231,  231 − 1]. For the purpose of this problem, assume that your function returns 231 − 1 when the division result overflows.
 
 `my solution`
 
@@ -604,6 +653,6 @@ Output: []
 
 `attention`
 
-- here is a important problem :how to judge two array ,they are equal but have different order.
+- here is a important problem :how to judge two arrays ,which have  equal but have different order.
 - i don't have a good idea,one poor solution ,compare one element whether in another list and remove the element from the second list.
 

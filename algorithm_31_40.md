@@ -21,6 +21,7 @@ Here are some examples. Inputs are in the left-hand column and its corresponding
 `attention`
 
 - didn't get what mean of this problem
+- see again ,but not understant it also.
 
 `accept solution`
 
