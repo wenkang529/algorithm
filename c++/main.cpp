@@ -13,17 +13,18 @@ struct ListNode
     ListNode *next;
     ListNode(int x) : val(x), next(NULL) {}
 };
+typedef int datatype;
+struct Treenode
+{
+    datatype value;
+    struct Treenode *left;
+    struct Treenode *right;
+    Treenode(datatype _value) : value(_value), left(NULL), right(NULL) {}
+};
 class Solution
 {
   public:
-    typedef int datatype;
-    struct Treenode
-    {
-        datatype value;
-        struct Treenode *left;
-        struct Treenode *right;
-        Treenode(datatype _value) : value(_value), left(NULL), right(NULL) {}
-    };
+
 
     //找出和为目标的两个数
     vector<int> twoSum(vector<int> &nums, int target)
@@ -136,7 +137,7 @@ class Solution
             cout << head->value;
         }
     }
-    //二叉树的后续递归实现
+    //用于二叉树的后续递归实现
     struct treenode
     {
         Treenode *node;
@@ -435,12 +436,12 @@ class Solution
                 {
                     map<string, int> tmp = count;
                     //计算是否符合 (计算长度为all_len) 其实这样也是有重复计算的
-                    for (int m = j; m < j+all_len; m += len_vs)
+                    for (int m = j; m < j + all_len; m += len_vs)
                     {
                         if (count.find(s.substr(m, len_vs)) == count.end())
                         {
-                            j = m ;
-                            break;   
+                            j = m;
+                            break;
                         }
                         else
                         {
@@ -451,8 +452,10 @@ class Solution
                     for (map<string, int>::iterator iter = tmp.begin(); iter != tmp.end(); iter++)
                     {
                         if (iter->second != 0)
-                            {f = 0;
-                            break;}
+                        {
+                            f = 0;
+                            break;
+                        }
                     }
                     if (f == 1)
                     {
@@ -467,7 +470,49 @@ class Solution
         }
         return r1;
     }
+    //二叉数的重建
+    /*
+    已知二叉树的前序遍历,中序遍历,重建二叉树
+    思路:假设已知前序遍历为[1,2,4,7,3,5,6,8],中序遍历为[4,7,2,1,5,3,6,8]
+    - 前序遍历第一个为 1  那么1为根节点 
+    - 在中序遍历中找到 1 的位置,那么1左边的为左子树,右边的为右子树
+    - 1左边有三个值  那么前序遍历中 除了第一个根节点 还有三个值是左子树 剩下的值为右子树 
+    - 这样就可以递归的用在左子树和右子树中
+    */
+   Treenode * tree_rebuild(vector<int> preoder,vector<int> midoder){
+       int pre_len=preoder.size();
+       int mid_len=midoder.size();
+       
+       if(pre_len!=mid_len||pre_len==0)
+        return nullptr;
+        
+       return tree_rebuild_f(preoder, midoder, 0, pre_len-1, 0, mid_len-1);
+
+   }
+   Treenode * tree_rebuild_f(vector<int> preoder,vector<int> midoder,int pre_begin,int pre_end,int mid_begin,int mid_end){
+       //判断是否合法
+       if(pre_begin>pre_end){
+           return nullptr;
+       }
+       //找出中间节点
+       int value=preoder[pre_begin];
+       int index=mid_begin;
+       while(index<=mid_end&&midoder[index]!=value){
+           index++;
+       }
+
+       if(index>mid_end){
+           throw "Invalid input";
+       }
+       //递归调用左节点和由节点
+       Treenode * root=new Treenode(value);
+       root->left=tree_rebuild_f(preoder,midoder,pre_begin+1,pre_begin+index-mid_begin,mid_begin,index-1);
+       root->right=tree_rebuild_f(preoder,midoder,pre_begin+index-mid_begin+1,pre_end,index+1,mid_end);
+       return root;
+   }
 };
+
+
 
 int main()
 {
@@ -486,13 +531,11 @@ int main()
     d->next = e;
     e->next = f;
     vector<string> pa = {"bar", "foo"};
-    vector<int> result = solution.findSubstring("barfoothefoobarman", pa);
+    vector<int> preoder={10,6,4,8,14,12,16};
+    vector<int> midoder={4,6,8,10,12,14,16};
+    Treenode * result = solution.tree_rebuild(preoder,midoder);
 
-    for (int i = 0; i < result.size(); i++)
-    {
-        cout << result[i]<<endl;
-    }
-
+    solution.postTraverse(result);
     std::cin.get();
     return 0;
 }
