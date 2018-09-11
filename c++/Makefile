@@ -1,5 +1,5 @@
 # src file
-SRCS=main.cpp
+SRCS=a.cpp
 # SRCS=dp.cpp
 
 # file to run
