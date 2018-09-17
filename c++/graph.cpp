@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include<queue>
+#include <queue>
 using namespace std;
 
 /*
@@ -54,26 +54,48 @@ class Graph
             }
         }
     }
-    void BFS_travel(Matrix_graph G,int i){
+//BFS
+/*
+use queue to realize BFS
+two-level loop
+for 0->num
+    Q push
+    cout
+    for 0->num
+        Q pop 
+        cout
+        Q push
+*/
+    void BFS_travel(Matrix_graph G, int i)
+    {
         queue<int> Q;
-        for(int i=0;i<G.vertex_num;i++){
-            G.visit[i]=false;
+        for (int i = 0; i < G.vertex_num; i++)
+        {
+            G.visit[i] = false;
         }
-        for(int i=0;i<G.vertex_num;i++){
-            if(!G.visit[i]){
-                G.visit[i]=true;
-                cout<<G.vertex[i];
+        for (int i = 0; i < G.vertex_num; i++)
+        {
+            if (!G.visit[i])
+            {
+                G.visit[i] = true;
+                cout << G.vertex[i];
                 Q.push(G.vertex[i]);
-                while(!Q.empty()){
-                    int tmp=Q.front();
+                while (!Q.empty())
+                {
+                    int tmp = Q.front();
                     Q.pop();
-                    for(int j=0;j<G.vertex_num;j++){
-                        if(G.visit[j]&&G.edge[i][j]==1){
-                        Q.push(G.vertex[i]);}
+                    for (int j = 0; j < G.vertex_num; j++)
+                    {
+                        if (G.visit[j] && G.edge[tmp][j] == 1)
+                        {
+                            Q.push(G.vertex[i]);
+                            G.visit[j] = true;
+                            cout<<G.vertex[j];
+
+                        }
                     }
                 }
             }
         }
-
     }
 };
