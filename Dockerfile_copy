@@ -1,0 +1,40 @@
+# version 0.0.1 for darknet
+#可以from ubuntu:16.04 
+#配置环境是python3 vim pip  tf pillow keras pillow scipy 等
+FROM wkwu001/ubuntu-force
+#FROM ubuntu:16.04
+#MAINTAINER WWK wenkang529@163.com
+
+#change ubuntu source
+#RUN cp /etc/apt/sources.list /etc/apt/sources.list.back
+#RUN sed -i 's#http://archive.ubuntu.com#http://mirrors.aliyun.com#g' /etc/apt/sources.list
+#RUN apt-get update &&  apt-get install -y autoconf \
+#	automake \
+#	libtool \
+#	git \
+#	wget \
+#	vim
+
+#opencv
+#RUN apt-get install -y build-essential
+
+#install python
+#RUN apt-get install -y build-essential libssl-dev libevent-dev libjpeg-dev libxml2-dev libxslt-dev \
+#	python3 python3-dev \
+#	python3-pip
+
+#python pip lib
+#RUN pip3 install numpy \
+#	tensorflow \
+#	pillow \
+#	keras \
+#	h5py \
+#	pydot \
+#	scipy 
+
+RUN pip3 install matplotlib runcython
+RUN pip3 tensorflow
+
+
+#COPY ./SSD-Tensorflow-master /home/
+
