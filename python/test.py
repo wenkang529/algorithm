@@ -1,47 +1,30 @@
-import sys
+#!/bin/python
+# -*- coding: utf8 -*-
+import numpy as np
 
-def search(a, start, end, target):
-    a_end = end
-    a_start = start
-    while start <= end:
-        mid = (start + end) >> 1
-        if mid > a_start and a[mid] > target and a[mid-1] < target:
-            return mid
-        elif mid < a_end-1 and a[mid] < target and a[mid+1] > target:
-            return mid+1
-        elif a[mid] == target:
-            return mid
-        elif target > a[mid]:
-            start = mid + 1
-        else:
-            end = mid-1
-    return -1
+m = int(input())
+n = int(input())
+arr=list(input().split())
+arr=map(int,arr)
+arr=list(arr)
+arr=np.array(arr)
+arr=np.reshape(arr,(m,n))
+a=b=0
+c=m-1
+d=n-1
 
-def lengthOfLIS(nums):
-    if not nums:
-        return 0
-    l = len(nums)
-    ans = 1 # length of longest increasing subsequence
-    opt = [-1*float("inf")]*l
-    opt[0] = nums[0]
-    for i in range(1, l):
-        if nums[i] > opt[ans-1]:
-            opt[ans] = nums[i]
-            ans += 1
-        elif nums[i] < opt[0]:
-            opt[0] = nums[i]
-        else:
-            r = search(opt, 0, ans-1, nums[i])
-            opt[r] = nums[i]
-    return ans
-
-
-if __name__ == "__main__":
-    # 读取第一行的n
-    line = sys.stdin.readline().strip()
-    values = list(map(int, line.split()))
-    num=values[1]
-    line = sys.stdin.readline().strip()
-    values = list(map(int, line.split()))
-    nums=values*num
-    print(lengthOfLIS(nums))
+while(a!=c or b!=d):
+    for i in range(b,d+1):
+        print(str(arr[a][i]),'\n')
+    for i in range(a+1,c+1):
+        print(str(arr[i][d]),'\n')
+    for i in range(b,d):
+        print(str(arr[c][d-1-i]),'\n')
+    for i in range(c-1,a,-1):
+        print(str(arr[i][b]),'\n')
+    a+=1
+    b+=1
+    c-=1
+    d-=1
+if(a==c and b==d):
+    print(arr[a][b])
