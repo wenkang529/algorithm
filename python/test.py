@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #!/bin/python
 # -*- coding: utf8 -*-
 import numpy as np
@@ -28,3 +29,7 @@ while(a!=c or b!=d):
     d-=1
 if(a==c and b==d):
     print(arr[a][b])
+=======
+
+
+>>>>>>> dc54d4b573dddc13cb87125835aaa877b8f84c09

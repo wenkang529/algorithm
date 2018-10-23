@@ -4,6 +4,8 @@
 #include <stack>
 #include <string>
 #include <map>
+#include <queue>
+#include<malloc.h>
 
 using namespace std;
 
@@ -24,12 +26,10 @@ struct Treenode
 class Solution
 {
   public:
-
-
     //找出和为目标的两个数
     vector<int> twoSum(vector<int> &nums, int target)
     {
-        unordered_map<int, int> hash;
+        map<int, int> hash;
         vector<int> result;
         for (int i = 0; i < nums.size(); i++)
         {
@@ -153,7 +153,8 @@ class Solution
         //先把左子树遍历一遍 把标志节点放入堆栈
         while (p != NULL || !s.empty())
         {
-            treenode *t = (treenode *)malloc(sizeof(treenode));
+            // treenode *t = (treenode *)malloc(sizeof(treenode));
+            treenode *t=new treenode;
             t->node = p;
             t->isFirst = true;
             s.push(t);
@@ -479,45 +480,88 @@ class Solution
     - 1左边有三个值  那么前序遍历中 除了第一个根节点 还有三个值是左子树 剩下的值为右子树 
     - 这样就可以递归的用在左子树和右子树中
     */
-   Treenode * tree_rebuild(vector<int> preoder,vector<int> midoder){
-       int pre_len=preoder.size();
-       int mid_len=midoder.size();
-       
-       if(pre_len!=mid_len||pre_len==0)
-        return nullptr;
-        
-       return tree_rebuild_f(preoder, midoder, 0, pre_len-1, 0, mid_len-1);
+    Treenode *tree_rebuild(vector<int> preoder, vector<int> midoder)
+    {
+        int pre_len = preoder.size();
+        int mid_len = midoder.size();
 
-   }
-   Treenode * tree_rebuild_f(vector<int> preoder,vector<int> midoder,int pre_begin,int pre_end,int mid_begin,int mid_end){
-       //判断是否合法
-       if(pre_begin>pre_end){
-           return nullptr;
-       }
-       //找出中间节点
-       int value=preoder[pre_begin];
-       int index=mid_begin;
-       while(index<=mid_end&&midoder[index]!=value){
-           index++;
-       }
+        if (pre_len != mid_len || pre_len == 0)
+            return NULL;
 
-       if(index>mid_end){
-           throw "Invalid input";
-       }
-       //递归调用左节点和由节点
-       Treenode * root=new Treenode(value);
-       root->left=tree_rebuild_f(preoder,midoder,pre_begin+1,pre_begin+index-mid_begin,mid_begin,index-1);
-       root->right=tree_rebuild_f(preoder,midoder,pre_begin+index-mid_begin+1,pre_end,index+1,mid_end);
-       return root;
-   }
+        return tree_rebuild_f(preoder, midoder, 0, pre_len - 1, 0, mid_len - 1);
+    }
+    Treenode *tree_rebuild_f(vector<int> preoder, vector<int> midoder, int pre_begin, int pre_end, int mid_begin, int mid_end)
+    {
+        //判断是否合法
+        if (pre_begin > pre_end)
+        {
+            return NULL;
+        }
+        //找出中间节点
+        int value = preoder[pre_begin];
+        int index = mid_begin;
+        while (index <= mid_end && midoder[index] != value)
+        {
+            index++;
+        }
+
+        if (index > mid_end)
+        {
+            throw "Invalid input";
+        }
+        //递归调用左节点和由节点
+        Treenode *root = new Treenode(value);
+        root->left = tree_rebuild_f(preoder, midoder, pre_begin + 1, pre_begin + index - mid_begin, mid_begin, index - 1);
+        root->right = tree_rebuild_f(preoder, midoder, pre_begin + index - mid_begin + 1, pre_end, index + 1, mid_end);
+        return root;
+    }
+    //Gavin a collection of distinct integers,return possible permutations.
+    //can't iterater element if use queue,can't ust pop to del first element powerful if use vector
+    //so use recursive(递归) is well solution.
+    vector<vector<int> > permute(vector<int> &nums)
+    {
+        vector<vector<int> > Q;
+        int size = nums.size();
+        if (size == 0)
+            return Q;
+        premutation(nums, Q, 0, size - 1);
+    }
+    void premutation(vector<int> &nums, vector<vector<int> > Q, int left, int right)
+    {
+        if (left == right)
+            Q.push_back(nums);
+        for (int i = left; i <= right; i++)
+        {
+            swap(nums[left], nums[i]);
+            premutation(nums, Q, left + 1, right);
+            swap(nums[left], nums[i]);
+        }
+    }
+
+    void createBinaryTree(Treenode *p)
+    {
+        char c;
+        cin >> c;
+
+        if (c == '#') //如果到了叶子节点，接下来的左、右子树分别赋值为0
+        {
+            p = NULL;
+        }
+        else
+        {
+            p = new Treenode(0);
+            //          p = (Node *)malloc(sizeof(Node));  //两种方式都可以,malloc需要加入头文件 #include<malloc.h>
+            p->value = c;
+            createBinaryTree(p->left);  //递归创建左子树
+            createBinaryTree(p->right); //递归创建右子树
+        }
+    }
 };
-
-
 
 int main()
 {
     Solution solution;
-    vector<int> nums = {2, 4, 6};
+    vector<int> nums = {2,4,6};
     ListNode *a = new ListNode(1);
     ListNode *b = new ListNode(2);
     ListNode *c = new ListNode(3);
@@ -531,9 +575,9 @@ int main()
     d->next = e;
     e->next = f;
     vector<string> pa = {"bar", "foo"};
-    vector<int> preoder={10,6,4,8,14,12,16};
-    vector<int> midoder={4,6,8,10,12,14,16};
-    Treenode * result = solution.tree_rebuild(preoder,midoder);
+    vector<int> preoder = {10, 6, 4, 8, 14, 12, 16};
+    vector<int> midoder = {4, 6, 8, 10, 12, 14, 16};
+    Treenode *result = solution.tree_rebuild(preoder, midoder);
 
     solution.postTraverse(result);
     std::cin.get();

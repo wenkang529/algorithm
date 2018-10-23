@@ -1,0 +1,1 @@
+sudo docker build -t wkwu001/ubuntu-force-py2 .
