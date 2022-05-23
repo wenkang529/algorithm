@@ -65,7 +65,7 @@ func oneEditAway(first string, second string) bool {
 
 //leetcode submit region end(Prohibit modification and deletion)
 
-func RunoneEditAway()  {
-	fmt.Println(oneEditAway("palea","pales"))
+func RunoneEditAway() {
+	fmt.Println(oneEditAway("palea", "pales"))
 
 }
