@@ -5,6 +5,5 @@ import (
 )
 
 func main() {
-	cn.RunInString("ky",
-		"ainwkckifykxlribaypk")
+	cn.RunFloodFill()
 }
