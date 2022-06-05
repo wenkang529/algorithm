@@ -4,5 +4,6 @@
 /c++/main
 /c++/*.o
 /c++/dp
-
+/go/.idea/
+/go/.idea
 
