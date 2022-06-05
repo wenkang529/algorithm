@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	cn.RunFloodFill()
+	cn.RunMaxAreaOfIsland()
 }
