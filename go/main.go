@@ -1,8 +1,9 @@
 package main
 
 import (
-	"main/src/leetcode/editor/cn"
+	"main/src/leetcode/editor/cn/doc/solution"
 )
 
 func main() {
-	cn.Runcc()}
+	solution.Rungogogo()
+}
